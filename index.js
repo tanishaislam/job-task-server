@@ -26,6 +26,32 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+
+    const taskCollection = client.db('jobTask').collection('task')
+
+
+    app.get('/tasks', async (req, res) =>{
+        const cursor = taskCollection.find();
+        const result = await cursor.toArray();
+        res.send(result)
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
